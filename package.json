@@ -1,6 +1,10 @@
 {
   "name": "WEB_2",
   "version": "1.0.0",
+  "engines": {
+    "node": "16.14.2."
+  },
+
   "dependencies": {
     "body-parser": "^1.20.0",
     "ejs": "^3.1.6",
