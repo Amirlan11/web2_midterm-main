@@ -44,7 +44,7 @@ mongoose.connect(dbConfig.url, {
 app.use('/user', UserRoute)
 
 
-const UserModel = require('C:\\Users\\User\\Desktop\\сабақ\\web2_midterm-main\\models\\user.js')
+const UserModel = require('./models/user')
 
 app.post('/booking',function (req ,res){
     let newUser=new UserModel({

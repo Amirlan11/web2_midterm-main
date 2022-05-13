@@ -33,7 +33,7 @@ var schema = new mongoose.Schema({
     },
 
     Note: {
-        typr: String,
+        type: String,
         default: ''
     },
 });

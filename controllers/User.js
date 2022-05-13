@@ -1,4 +1,4 @@
-const UserModel = require('C:\\Users\\User\\Desktop\\сабақ\\web2_midterm-main\\models\\user.js')
+const UserModel = require('../models/user')
 // Create and Save a new user
 exports.create = async (req, res) => {
     if (!req.body.email && !req.body.firstName && !req.body.lastName && !req.body.phone) {
