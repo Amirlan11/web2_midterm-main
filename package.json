@@ -1,9 +1,6 @@
 {
   "name": "WEB_2",
   "version": "1.0.0",
-  "engines": {
-    "node": "v16.14.2."
-  },
   "scripts": {
     "start": "node server.js"
   },
