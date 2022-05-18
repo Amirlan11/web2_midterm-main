@@ -29,7 +29,6 @@ app.get('/', (req, res) => {
 
 
 
-
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.url, {
     useNewUrlParser: true
@@ -66,6 +65,7 @@ let port = process.env.PORT;
 if (port == null || port == "") {
     port = 3000;
 }
+
 
 app.listen(port, () =>
     console.log(`App listening at http://localhost:${port}`)
