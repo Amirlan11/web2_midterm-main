@@ -27,7 +27,7 @@ var schema = new mongoose.Schema({
         type: String,
         default: ''
     },
-    time:{
+    Time:{
         type: String,
         default: ''
     },
@@ -37,6 +37,5 @@ var schema = new mongoose.Schema({
         default: ''
     },
 });
-var user = new mongoose.model('User', schema);
 
-module.exports = user;
+module.exports = mongoose.model('user', schema);
