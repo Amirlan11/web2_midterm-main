@@ -52,6 +52,7 @@
               <li><a class="nav__link" href="/about">About</a></li>
               <li><a class="nav__link" href="/contact">Contact</a></li>
               <li><a href="/booking" class="btn primary-btn">Book Table</a></li>
+              <li><a href="/signup" class="btn primary-btn">Sign Up</a></li>
             </div>
           </ol>
         </nav>
@@ -72,13 +73,15 @@
     <div class="container">
       <h3 class="ourSpecials__title">Our Specials</h3>
       <div class="ourSpecials__wrapper">
+        <%if(menu != '') {%>
+        <%menu.forEach(element => {%>
         <div class="ourSpecials__item">
           <div class="ourSpecials__item__img">
-            <img src="/images/food-3.png" alt="food img">
+            <img src="<%=element.img%>" alt="food img">
           </div>
           <div class="ourSpecials__item__info">
             <h3 class="ourSpecials__item__title">
-              Sweet Potato Fries Bowl
+              <%=element.title%>
             </h3>
             <h4 class="ourSpecials__item__price">$12</h4>
             <div class="ourSpecials__item__stars">
@@ -86,20 +89,10 @@
             </div>
           </div>
         </div>
-        <div class="ourSpecials__item">
-          <div class="ourSpecials__item__img">
-            <img src="/images/food-1.png" alt="food img">
-          </div>
-          <div class="ourSpecials__item__info">
-            <h3 class="ourSpecials__item__title">
-              Vegan Salad bowl
-            </h3>
-            <h4 class="ourSpecials__item__price">$12</h4>
-            <div class="ourSpecials__item__stars">
-              <img src="/images/3star.png" alt="3 stars">
-            </div>
-          </div>
-        </div>
+        <%})%>
+        <%}else{%>
+          <h6>List is empty</h6>
+        <%}%>
       </div>
     </div>
   </section>
@@ -111,6 +104,20 @@
         Top Dishes
       </h2>
       <div class="dishGrid__wrapper">
+        <div class="dishGrid__item">
+          <div class="dishGrid__item__img">
+            <img src="/images/food-1.png" alt="food img">
+          </div>
+          <div class="dishGrid__item__info">
+            <h3 class="dishGrid__item__title">
+              Hot Green Bowl
+            </h3>
+            <h3 class="dishGrid__item__price">$12</h3>
+            <div class="dishGrid__item__stars">
+              <img src="/images/3star.png" alt="3 star">
+            </div>
+          </div>
+        </div>
         <div class="dishGrid__item">
           <div class="dishGrid__item__img">
             <img src="/images/food-1.png" alt="food img">

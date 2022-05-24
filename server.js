@@ -1,25 +1,52 @@
 const express = require("express");
+const mongoose = require("mongoose");
+const exphbs = require("express-handlebars");
+const ejs = require('ejs')
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override')
+
 const app = express();
-//const port = 3000;
-const bodyParser=require("body-parser");
-const ejs=require("ejs");
+const PORT = 3000;
+
+
+const hbs = exphbs.create({
+    defaultLayout: 'main',
+    extname: 'hbs'
+})
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
+app.use(bodyParser.json())
+app.set('view engine', ejs);
+app.engine('ejs', require('ejs').__express);
+
+app.use(methodOverride('_method'))
+
+app.engine('hbs', hbs.engine)
+app.set('view engine', 'hbs')
+
+app.use(express.static('public'))
+app.use(express.urlencoded({
+    extended: true
+}))
+app.use(express.json())
+
 const https = require("https");
 
 const dbConfig = require('./config/database.config.js');
-const mongoose = require('mongoose');
-const router = express.Router();
-const { kStringMaxLength } = require('buffer');
+
+
 
 app.set('view engine', 'ejs')
-
-app.use(express.static('public'));
-app.use(bodyParser.urlencoded({extended: true}))
 
 app.use('/', require('./routes/indexRouter.js'))
 app.use('/menu', require('./routes/menuRouter.js'))
 app.use('/about', require('./routes/aboutRouter.js'))
 app.use('/contact', require('./routes/contactRouter.js'))
 app.use('/booking', require('./routes/bookingRouter.js'))
+app.use('/admin', require('./routes/adminRoute'))
+app.use('/signup', require('./routes/signupRoute'))
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -41,87 +68,21 @@ mongoose.connect(dbConfig.url, {
 
 
 
-
-const User = require('./models/user')
-
-// app.post('/booking',function (req ,res){
-//     let newUser=new User({
-//         FirstName: req.body.FirstName,
-//         LastName:req.body.LastName,
-//         Email:req.body.Email,
-//         GuestNumber:req.body.GuestNumber,
-//         TableType:req.body.TableType,
-//         Placement:req.body.Placement,
-//         Date:req.body.Date,
-//         time:req.body.Time,
-//         Note:req.body.Note,
-//     })
-//     newUser.save();
-//     res.redirect("/booking")
-// })
-app.post("/booking",(req,res)=>{
-    var FirstName = req.body.FirstName;
-    var  LastName =req.body.LastName;
-        var Email=req.body.Email;
-        var GuestNumber=req.body.GuestNumber;
-        var TableType=req.body.TableType;
-        var Placement=req.body.Placement;
-        var Date=req.body.Date;
-        var time=req.body.Time;
-        var Note=req.body.Note;
-    var newUser = {FirstName:FirstName,LastName:LastName,Email:Email,GuestNumber:GuestNumber,TableType:TableType,Placement:Placement,Date:Date,Time:time,Note:Note};
-    User.create(newUser,(err,data)=>{
-        if(err){
-            console.log(err);
-        }else {
-            console.log(data);
-            res.redirect("/booking");
-        }
-    })
-})
-
-const methodOverride = require("method-override");
-app.use(methodOverride("_method"));
-
-
-
-// app.get("/booking",(req, res)=>{
-// User.find({},(err,docs)=>{
-//         if (err) {console.log(err);
-//         }else{
-//             res.render("booking",{users: docs});
-//         }
-//     })
-//
-// })
-
-// app.get('/', (req, res) => {
-//     User.find({}, function(err, users) {
-//         res.render('booking', {
-//             usersList: users
-//         })
-//     })
-// })
-
-const moviesSchema = {
-    title: String,
-    genre: String,
-    year: String
-}
-
-const Movie = mongoose.model('Movie', moviesSchema);
-
 app.get('/', (req, res) => {
-    Movie.find({}, function(err, movies) {
-        res.render('index', {
-            List: movies
-        })
-    })
-})
+    res.render('/');
+});
 
+app.get('/find', (req, res) => {
+    res.render('find');
+});
 
+app.get('/update', (req, res) => {
+    res.render('update');
+});
 
-
+app.get('/delete', (req, res) => {
+    res.render('delete');
+});
 
 
 

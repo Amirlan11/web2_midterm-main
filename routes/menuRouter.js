@@ -1,10 +1,16 @@
 const express = require('express')
 const router = express.Router()
+const menuModel = require('../models/menuModel')
 const path = require('path')
 
-const API_URL = "http://api.exchangeratesapi.io/latest"
 router
     .route('/')
-    .get((req,res) => res.render(path.resolve('views/menu.ejs')))
+    .get(async (req, res) => {
+        const menu = await menuModel.find()
+        res.render(path.resolve('views/menu.ejs'), {
+            activePage: 'menu',
+            menu: menu,
+        })
+    })
 
 module.exports = router
