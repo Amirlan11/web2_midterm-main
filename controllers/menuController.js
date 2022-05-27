@@ -3,11 +3,11 @@ const menuModel = require('../models/menuModel')
 class menuController {
     async addFilm(req, res) {
         try {
-            const film = new menuModel({
+            const menu = new menuModel({
                 title: req.body.filmTitle,
                 img: req.body.filmImg
             })
-            await film.save()
+            await menu.save()
             res.redirect('/admin')
         } catch (e) {
             console.log(e)
