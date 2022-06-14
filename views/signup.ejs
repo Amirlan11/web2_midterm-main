@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LOGIN</title>
+    <meta charset="UTF-8">
+
+    <meta name="google-signin-client_id" content="318740633733-q5fibst1q4ftv0bagglsni6uru9te87a.apps.googleusercontent.com">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="cont">
+    <div class="form sign-in">
+        <h2>Sign In</h2>
+        <label>
+            <span>Email Address</span>
+            <input type="email" name="email">
+        </label>
+        <label>
+            <span>Password</span>
+            <input type="password" name="password">
+        </label>
+
+        <p class="forgot-pass">Forgot Password ?</p>
+
+        <div class="social-media">
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        </div>
+    </div>
+
+    <div class="sub-cont">
+        <div class="img">
+            <div class="img-text m-up">
+                <h2>New here?</h2>
+                <p>Sign up and discover great amount of new opportunities!</p>
+            </div>
+            <div class="img-text m-in">
+                <h2>One of us?</h2>
+                <p>If you already has an account, just sign in. We've missed you!</p>
+            </div>
+            <div class="img-btn">
+                <span class="m-up">Sign Up</span>
+                <span class="m-in">Sign In</span>
+            </div>
+        </div>
+        <div class="form sign-up">
+            <h2>Sign Up</h2>
+            <label>
+                <span>Name</span>
+                <input type="text" name="regname">
+            </label>
+            <label>
+                <span>Email</span>
+                <input type="email" name="regemail">
+            </label>
+            <label>
+                <span>Password</span>
+                <input type="password" name="regpassword">
+            </label>
+            <button type="button" class="submit">Sign Up Now</button>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="script.js"></script>
+<script>
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    }
+</script>
+</body>
+</html>
